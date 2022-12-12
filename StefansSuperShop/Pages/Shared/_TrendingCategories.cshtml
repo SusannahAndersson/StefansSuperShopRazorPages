@@ -1,0 +1,22 @@
+﻿@model List<IndexModel.TrendingCategory>
+<!-- row -->
+<div class="row">
+
+    @foreach (var c in Model)
+    {
+        <div class="col-md-4 col-xs-6">
+            <div class="shop">
+                <div class="shop-img">
+                    <img src="@Url.Page("ServeImage", "CategoryImage", new { id = c.Id })" alt="@c.Name" />
+                </div>
+                <div class="shop-body">
+                    <h3>@c.Name<br>Collection</h3>
+                    <a asp-page="Category" asp-route-id="@c.Id" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+

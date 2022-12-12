@@ -1,0 +1,32 @@
+﻿@page
+@model StefansSuperShop.Pages.Admin.ProductsModel
+@{
+}
+<div class="container">
+    <h1>Products</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock level</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var p in Model.Products)
+        {
+            <tr >
+                <td >@p.Name</td>
+                <td>@p.Price</td>
+                <td>@p.Stocklevel</td>
+                <td>
+                        <a class="btn btn-primary " role="button" href="/admin/productedit?id=@p.Id">Edit</a>
+                </td>
+            </tr>
+
+        }
+        </tbody>        
+    </table>
+    <a href="#" class="btn btn-primary btn-lg " role="button">Add new</a>
+</div>
