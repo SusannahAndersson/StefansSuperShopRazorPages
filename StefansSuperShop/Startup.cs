@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StefansSuperShop.Data;
+using StefansSuperShop.Services;
 
 namespace StefansSuperShop;
 
@@ -27,6 +28,8 @@ public class Startup
         services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
+
+        services.AddScoped<INewsletterService, NewsletterService>();
         services.AddTransient<DataInitializer>();
         services.AddRazorPages();
     }
