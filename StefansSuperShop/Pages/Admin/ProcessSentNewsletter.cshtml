@@ -1,0 +1,26 @@
+﻿@page
+@model StefansSuperShop.Pages.Admin.ProcessSentNewsletterModel
+@{
+    var emailHeader = Request["email-header"];
+    var emailBody = Request["email-body"]; 
+    var customerRequest = Request["customerRequest"];
+    var errorMessage = "";
+    var debuggingFlag = false;
+    try {
+        // Initialize WebMail helper
+        WebMail.SmtpServer = "your-SMTP-host";
+        WebMail.SmtpPort = 25;
+        WebMail.UserName = "your-user-name-here";
+        WebMail.Password = "your-account-password";
+        WebMail.From = "your-email-address-here";
+
+        // Send email
+        WebMail.Send(to: customerEmail,
+            subject: "Help request from - " + customerName,
+            body: customerRequest
+        );
+    }
+    catch (Exception ex ) {
+        errorMessage = ex.Message;
+    }
+}
