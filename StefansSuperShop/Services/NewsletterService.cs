@@ -9,7 +9,9 @@ namespace StefansSuperShop.Services
 		public Newsletter GetNewsletter(int id);
 		public List<Newsletter> GetAllNewsletters();
 		public bool CreateNewsletter(Newsletter newsletter);
-	}
+		public bool IsEmailSubscriber(string email);
+
+    }
 	public class NewsletterService : INewsletterService
 	{
         private readonly ApplicationDbContext _context;
@@ -33,6 +35,11 @@ namespace StefansSuperShop.Services
 		{
 			_context.Newsletters.Add(newsletter);
 			return _context.SaveChanges() > 0;
+		}
+
+		public bool IsEmailSubscriber(string email)
+		{
+			return _context.Subscribers.Any(s => s.Mail == email);
 		}
 
 	}
