@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StefansSuperShop.Data;
 using StefansSuperShop.Services;
+using StefansSuperShop.Configuration;
 
 namespace StefansSuperShop;
 
@@ -29,8 +30,13 @@ public class Startup
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        services.AddScoped<INewsletterService, NewsletterService>();
+        
         services.AddTransient<DataInitializer>();
+
+        //newsletter services
+        services.AddScoped<INewsletterService, NewsletterService>();
+        //services.Configure(Configuration.GetSection(nameof(MailSettings)));
+
         services.AddRazorPages();
     }
 
