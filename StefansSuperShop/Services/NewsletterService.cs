@@ -48,7 +48,7 @@ namespace StefansSuperShop.Services
         {
             List<string> emails = new List<string>();
 
-            foreach(var subscriber in _context.Subscribers)
+            foreach (var subscriber in _context.Subscribers)
             {
                 emails.Add(subscriber.Mail);
             }

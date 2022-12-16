@@ -1,26 +1,24 @@
 ﻿@page
 @model StefansSuperShop.Pages.Admin.ProcessSentNewsletterModel
 @{
-    //var emailHeader = Request["email-header"];
-    //var emailBody = Request["email-body"]; 
-    //var 
-    //var errorMessage = "";
-    //var debuggingFlag = false;
-    //try {
-    //    // Initialize WebMail helper
-    //    WebMail.SmtpServer = "your-SMTP-host";
-    //    WebMail.SmtpPort = 25;
-    //    WebMail.UserName = "your-user-name-here";
-    //    WebMail.Password = "your-account-password";
-    //    WebMail.From = "your-email-address-here";
+    var subject = Request.Form["email-subject"];
+    var body = Request.Form["email-body"]; 
+    var debuggingFlag = false;
 
-    //    // Send email
-    //    WebMail.Send(to: customerEmail,
-    //        subject: "Help request from - " + customerName,
-    //        body: customerRequest
-    //    );
-    //}
-    //catch (Exception ex ) {
-    //    errorMessage = ex.Message;
-    }
+    var statusCode = Model.SendEmail(subject, body);
 }
+
+<div class="container">
+    @if(statusCode.IsCompletedSuccessfully){
+      <p>The newsletter was sent out successfully.</p>
+    }
+
+    else{
+        <p><b>The email was <em>not</em> sent.</b></p>
+        <p>Please check that the code in the ProcessRequest page has 
+           correct settings for the SMTP server name, a user name, 
+           a password, and a "from" address.
+        </p>
+        @*TODO: remove second part?*@
+    }
+</div>
