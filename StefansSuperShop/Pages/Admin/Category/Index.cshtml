@@ -1,0 +1,54 @@
+﻿@page
+@model StefansSuperShop.Pages.Admin.Category.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <h2>Category</h2>
+    <p class="mb-4">
+        <a asp-page="Create">Create New</a>
+    </p>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-10">
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Categories[0].CategoryName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Categories[0].Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Categories[0].Picture)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td class="w-50">
+                                    @Html.DisplayFor(modelItem => item.Picture)
+                                </td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                                    <a asp-page="./Details" asp-route-id="@item.CategoryId">Details</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.CategoryId">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
