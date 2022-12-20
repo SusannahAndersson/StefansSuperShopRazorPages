@@ -1,15 +1,16 @@
 ﻿@page
 @model StefansSuperShop.Pages.Admin.ProcessSentNewsletterModel
 @{
-    var subject = Request.Form["email-subject"];
-    var body = Request.Form["email-body"]; 
+    var subject = Request.Form["email-subject"].ToString();
+    var body = Request.Form["email-body"].ToString(); 
     var debuggingFlag = false;
 
     var statusCode = Model.SendEmail(subject, body);
 }
 
 <div class="container">
-    @if(statusCode.IsCompletedSuccessfully){
+
+    @*@if(statusCode.IsCompletedSuccessfully){
       <p>The newsletter was sent out successfully.</p>
     }
 

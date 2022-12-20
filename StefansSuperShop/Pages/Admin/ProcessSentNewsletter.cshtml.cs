@@ -12,16 +12,19 @@ namespace StefansSuperShop.Pages.Admin
 {
     public class ProcessSentNewsletterModel : PageModel
     {
-        private readonly ApplicationDbContext context;
-        private readonly INewsletterService newsletterService;
-        private readonly IMailService mail;
+        //private readonly INewsletterService newsletterService;
+        //private readonly IMailService mail;
 
-        public ProcessSentNewsletterModel(ApplicationDbContext context, NewsletterService newsletterService,
-            IMailService mail)
+        public ProcessSentNewsletterModel(
+            )
         {
-            this.context = context;
-            this.newsletterService = newsletterService;
-            this.mail = mail;
+            //this.newsletterService = newsletterService;
+            //this.mail = mail;
+        }
+
+        public void OnPost()
+        {
+                
         }
 
         public void OnGet()
@@ -30,13 +33,13 @@ namespace StefansSuperShop.Pages.Admin
 
         public async Task<IActionResult> SendEmail(string subject, string body)
         {
-            List<string> subscribers = newsletterService.GetSubscriberEmails();
+            List<string> subscribers = new();
             
             MailData mailData = new(subscribers, subject, body);
 
-            bool result = await mail.SendAsync(mailData, new CancellationToken());
+            //bool result = await mail.SendAsync(mailData, new CancellationToken());
 
-            if (result)
+            if (true)
             {
                 return StatusCode(StatusCodes.Status200OK, "Mail has successfully been sent.");
             }

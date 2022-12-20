@@ -34,9 +34,9 @@ public class Startup
         services.AddTransient<DataInitializer>();
 
         //newsletter services
-        services.Configure<MailSettings>(Configuration.GetSection(nameof(MailSettings)));
+        //services.Configure<MailSettings>(Configuration.GetSection(nameof(MailSettings)));
         services.AddScoped<INewsletterService, NewsletterService>();
-        services.AddScoped<IMailService, MailService>();
+        //services.AddScoped<IMailService, MailService>();
         
 
         services.AddRazorPages();
