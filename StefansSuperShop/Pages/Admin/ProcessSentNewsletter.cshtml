@@ -1,8 +1,8 @@
 ﻿@page
 @model StefansSuperShop.Pages.Admin.ProcessSentNewsletterModel
 @{
-    var subject = Request.Form["email-subject"].ToString();
-    var body = Request.Form["email-body"].ToString(); 
+    var subject = Request.Form["email-subject"];
+    var body = Request.Form["email-body"]; 
     var debuggingFlag = false;
 
     var statusCode = Model.SendEmail(subject, body);
