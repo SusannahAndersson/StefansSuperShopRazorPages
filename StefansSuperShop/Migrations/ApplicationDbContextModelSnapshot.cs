@@ -17,7 +17,7 @@ namespace StefansSuperShop.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.11")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -239,10 +239,11 @@ namespace StefansSuperShop.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("ntext");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
-                    b.Property<byte[]>("Picture")
-                        .HasColumnType("image");
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CategoryId");
 

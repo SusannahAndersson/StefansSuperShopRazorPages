@@ -19,11 +19,10 @@ namespace StefansSuperShop.Data
         [StringLength(15)]
         public string CategoryName { get; set; }
 
-        [Column(TypeName = "ntext")]
+        [StringLength(2000)]
         public string Description { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Picture { get; set; }
+        public string ImageUrl { get; set; }
 
         [InverseProperty("Category")]
         public virtual ICollection<Products> Products { get; set; }
