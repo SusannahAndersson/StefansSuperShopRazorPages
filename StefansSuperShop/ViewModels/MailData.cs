@@ -24,8 +24,8 @@ namespace StefansSuperShop.ViewModels
 
 
             // Sender - it's okay if these are null, will be fixed further down the line
-            From = "nfo@stefansupershop.com";
-            DisplayName = "Stefans Super Shop";
+            From = from;
+            DisplayName = displayName;
 
             // Content
             Subject = subject;

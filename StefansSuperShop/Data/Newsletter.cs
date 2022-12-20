@@ -17,7 +17,7 @@ namespace StefansSuperShop.Data
 
         [Required]
         [StringLength(150)]
-        public string Title { get; set; }
+        public string Title { get; set; }//TODO: change to subject?
         public string Body { get; set; }
         public virtual ICollection<NewsletterSubscriber> Subscribers { get; set; }
     }

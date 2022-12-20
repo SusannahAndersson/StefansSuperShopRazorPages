@@ -12,40 +12,55 @@ namespace StefansSuperShop.Pages.Admin
     public class CreateNewsletterModel : PageModel
     {
         private readonly INewsletterService newsletterService;
-        private readonly IMailService mail;
+        private readonly IMailService mailService;
 
         public CreateNewsletterModel (INewsletterService newsletterService, IMailService mailService
             )
         {
             this.newsletterService = newsletterService;
-            this.mail = mail;
+            this.mailService = mailService;
         }
-        public void OnPost()
+
+        public bool emailFailed = false;
+        public bool emailSucceeded = false;
+
+        public async Task OnPost()
         {
             var body = Request.Form["email-body"];
             var subject = Request.Form["email-subject"];
 
-            var result = SendEmail(subject, body);
+            var statusCode = await SendEmail(subject, body);
+
+            //TODO: alt injecera html koden? hur... vill helst också ta bort form... dvs skicka till ny sida, men det gick ej
+            if (statusCode)
+                emailSucceeded = true;
+            else
+                emailFailed = true;
         }
 
-        public async Task<IActionResult> SendEmail(string subject, string body)
+        public async Task<bool> SendEmail(string subject, string body)
         {
-            List<string> subscribers = newsletterService.GetSubscriberEmails();
+            //List<string> subscribers = newsletterService.GetSubscriberEmails();
+            //TODO: fix so subscribers get seeded
+            List<string> subscribers = new();
+            subscribers.Add("brenna.mills@ethereal.email");
 
             var mailData = new MailData(subscribers, subject, body);
 
-            var ct = new CancellationToken();
+            bool result = await mailService.SendAsync(mailData, new CancellationToken());
 
-            bool result = await mail.SendAsync(mailData, ct);
+            return result;
 
-            if (result)
-            {
-                return StatusCode(StatusCodes.Status200OK, "Mail has successfully been sent.");
-            }
-            else
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occured. The Mail could not be sent.");
-            }
+            //TODO: this doesn't work bc the returned statuscode can't be checked with iscompletedsuccessfully when calling
+            //method is async (returned type becomes iactionresult instead of task<iactionresult>
+            //if (result)
+            //{
+            //    return StatusCode(StatusCodes.Status200OK, "Mail has successfully been sent.");
+            //}
+            //else
+            //{
+            //    return StatusCode(StatusCodes.Status500InternalServerError, "An error occured. The Mail could not be sent.");
+            //}
         }
     }
 }

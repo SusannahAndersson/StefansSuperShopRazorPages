@@ -1,11 +1,6 @@
 ﻿@page
 @model StefansSuperShop.Pages.Admin.ProcessSentNewsletterModel
 @{
-    var subject = Request.Form["email-subject"];
-    var body = Request.Form["email-body"]; 
-    var debuggingFlag = false;
-
-    var statusCode = Model.SendEmail(subject, body);
 }
 
 <div class="container">
