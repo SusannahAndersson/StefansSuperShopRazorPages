@@ -30,6 +30,7 @@ namespace StefansSuperShop.Data
         private void SeedSubscribers()
         {
             AddSubscriber("brenna.mills@ethereal.email");
+            _dbContext.SaveChanges();
         }
 
         private void AddSubscriber(string email)
