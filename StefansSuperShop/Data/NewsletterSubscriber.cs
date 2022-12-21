@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StefansSuperShop.Data
 {
-    public class NewsletterSubscriber
+    public class NewsletterSubscriber 
     {
-        public NewsletterSubscriber()
+        public NewsletterSubscriber() 
         {
             Newsletters = new HashSet<Newsletter>();
         }
@@ -18,7 +18,7 @@ namespace StefansSuperShop.Data
         [Required]
         [StringLength(150)]
         public string Mail { get; set; }//TODO: email adress?
-        public virtual ICollection<Newsletter> Newsletters { get; set; } //is this necessary?
+        public virtual ICollection<Newsletter> Newsletters { get; set; } 
     }
 }
 

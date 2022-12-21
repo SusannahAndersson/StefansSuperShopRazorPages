@@ -20,17 +20,10 @@
     </div>
   </form>
 
-   @if(Model.emailSucceeded) {
-      <p>The newsletter was sent out successfully.</p>
-    }
-
-    else if (Model.emailFailed) {
-        <p><b>The email was <em>not</em> sent.</b></p>
-        <p>Please check that the code in the ProcessRequest page has 
-           correct settings for the SMTP server name, a user name, 
-           a password, and a "from" address.
-        </p>
-        @*TODO: remove second part?*@
-    }
+   <div>
+       <p>
+           @Model.endMessage
+       </p>
+   </div>
 
 </div>

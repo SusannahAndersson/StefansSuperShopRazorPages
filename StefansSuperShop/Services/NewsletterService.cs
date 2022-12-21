@@ -1,4 +1,6 @@
-﻿using StefansSuperShop.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using StefansSuperShop.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,9 +10,10 @@ namespace StefansSuperShop.Services
     {
         public Newsletter GetNewsletter(int id);
         public List<Newsletter> GetAllNewsletters();
-        public bool CreateNewsletter(Newsletter newsletter);
+        public bool AddNewsletter(Newsletter newsletter);
         public bool IsEmailSubscriber(string email);//TODO: IsEmailSubscribed?
         public List<string> GetSubscriberEmails();
+        public Newsletter CreateNewsletter(string title, string body);
 
     }
     public class NewsletterService : INewsletterService
@@ -33,10 +36,36 @@ namespace StefansSuperShop.Services
             return _context.Newsletters.ToList();
         }
 
-        public bool CreateNewsletter(Newsletter newsletter)
+        public bool AddNewsletter(Newsletter newsletter)
         {
             _context.Newsletters.Add(newsletter);
-            return _context.SaveChanges() > 0;//TODO: ask what this means
+            return _context.SaveChanges() > 0;//if updates were succesful, will be more than one, will return true
+        }
+
+        public Newsletter CreateNewsletter(string title, string body)
+        {
+            Newsletter newsletter = new Newsletter()
+            {
+                Title = title,
+                Body = body,
+                Subscribers = GetSubscribers()
+            };
+
+            return newsletter;
+        }
+
+        //TODO: jag kunde inte casta _context.Subscribers till ICollection<NewsletterSubscriber> så gjorde denna metod
+        //finns det ett bättre sätt?
+        private ICollection<NewsletterSubscriber> GetSubscribers()
+        {
+            List<NewsletterSubscriber> subscribers = new();
+
+            foreach(var s in _context.Subscribers)
+            {
+                subscribers.Add(s);
+            }
+
+            return subscribers;
         }
 
         public bool IsEmailSubscriber(string email)
