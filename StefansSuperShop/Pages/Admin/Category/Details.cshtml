@@ -24,13 +24,14 @@
             @Html.DisplayFor(model => model.Categories.Description)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Categories.Picture)
+            @Html.DisplayNameFor(model => model.Categories.ImageUrl)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Categories.Picture)
+            @Html.DisplayFor(model => model.Categories.ImageUrl)
         </dd>
     </dl>
 </div>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Categories.CategoryId">Edit</a> |
     <a asp-page="./Index">Back to List</a>

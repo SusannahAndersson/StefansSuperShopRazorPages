@@ -3,27 +3,23 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <div class="container">
     <h2>Category</h2>
+
     <p class="mb-4">
         <a asp-page="Create">Create New</a>
     </p>
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
+
+    <div clas="container">
+        <div class="row">
             <div class="col-sm-12 col-md-10">
                 <table class="table table-sm table-hover">
                     <thead>
                         <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Categories[0].CategoryName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Categories[0].Description)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Categories[0].Picture)
-                            </th>
-                            <th></th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Image URL</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,8 +32,8 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
-                                <td class="w-50">
-                                    @Html.DisplayFor(modelItem => item.Picture)
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ImageUrl)
                                 </td>
                                 <td>
                                     <a asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
@@ -48,6 +44,17 @@
                         }
                     </tbody>
                 </table>
+
+                <div>
+                <p class="mt-5">
+                    Category images:
+                </p>
+                @foreach (var item in Model.Categories)
+                {
+                    <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="img-thumbnail" alt="@Html.DisplayFor(modelItem => item.CategoryName)" style="width: 50px; height: 50px;" />
+                }
+                </div>
+
             </div>
         </div>
     </div>
