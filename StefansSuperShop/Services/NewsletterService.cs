@@ -14,6 +14,7 @@ namespace StefansSuperShop.Services
         public bool IsEmailSubscriber(string email);//TODO: IsEmailSubscribed?
         public List<string> GetSubscriberEmails();
         public Newsletter CreateNewsletter(string title, string body);
+        public void AddSubscriber(string mail);
 
     }
     public class NewsletterService : INewsletterService
@@ -83,6 +84,12 @@ namespace StefansSuperShop.Services
             }
 
             return emails;
+        }
+
+        public void AddSubscriber(string mail)
+        {
+            _context.Subscribers.Add(new NewsletterSubscriber { Mail = mail });
+            _context.SaveChanges();
         }
 
     }

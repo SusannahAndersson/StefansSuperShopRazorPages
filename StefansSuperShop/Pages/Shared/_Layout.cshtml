@@ -4,6 +4,8 @@
 @inject UserManager<IdentityUser> UserManager
 @inject INewsletterService NewsletterService
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -166,10 +168,14 @@
     </div>
     <!-- /SECTION -->
     <!-- NEWSLETTER -->
-    @if (!(SignInManager.IsSignedIn(User) &&
-          NewsletterService.IsEmailSubscriber((await UserManager.GetUserAsync(User)).Email)))
-    {
-        <div id="newsletter" class="section">
+    <div id="newsletter" class="section">
+
+        <!-- Hide Newsletter if user is already subscribed --> 
+        @if (!(SignInManager.IsSignedIn(User) &&
+               NewsletterService.IsEmailSubscriber((await UserManager.GetUserAsync(User)).Email)))
+        {
+
+            <!--<NewsletterSignup />-->
             <!-- container -->
             <div class="container">
                 <!-- row -->
@@ -177,8 +183,8 @@
                     <div class="col-md-12">
                         <div class="newsletter">
                             <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                            <form>
-                                <input class="input" type="email" placeholder="Enter Your Email">
+                            <form method="post">
+                                <input class="input" name="email" type="email" placeholder="Enter Your Email">
                                 <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
                             </form>
                             <ul class="newsletter-follow">
@@ -201,8 +207,12 @@
                 <!-- /row -->
             </div>
             <!-- /container -->
-        </div>
-    }
+
+        }
+
+
+    </div>
+
     <!-- /NEWSLETTER -->
     <!-- FOOTER -->
     <footer id="footer">
