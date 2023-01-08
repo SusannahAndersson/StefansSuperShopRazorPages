@@ -24,7 +24,7 @@ namespace StefansSuperShop.Pages.Admin
 
         public string endMessage;
 
-        public async Task OnPost()
+        public async Task OnPostSend()
         {
             var body = Request.Form["email-body"];
             var subject = Request.Form["email-subject"];
@@ -46,6 +46,22 @@ namespace StefansSuperShop.Pages.Admin
 
             else
                 endMessage = "The email was not sent.";      
+        }
+
+        public void OnPostSave()
+        {
+            var body = Request.Form["email-body"];
+            var subject = Request.Form["email-subject"];
+
+            Newsletter newsletter = newsletterService.CreateNewsletter(subject, body);
+
+            var dbResult = newsletterService.AddNewsletter(newsletter);
+
+            if (dbResult)
+                endMessage = "The newsletter was saved successfully.";
+            else
+                endMessage = "The newsletter could not be saved to the database.";
+
         }
 
         public async Task<bool> SendEmail(string subject, string body, List<string> subscribers)
