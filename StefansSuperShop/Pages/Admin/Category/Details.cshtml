@@ -5,26 +5,25 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Category Details</h2>
 
-<div>
-    <h4>Categories</h4>
+<div class="container">
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Categories.CategoryName)
+            Category Name:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Categories.CategoryName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Categories.Description)
+            Description:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Categories.Description)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Categories.ImageUrl)
+           Image URL:
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Categories.ImageUrl)
@@ -33,6 +32,6 @@
 </div>
 
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Categories.CategoryId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Categories.CategoryId" class="btn btn-primary">Edit</a> |
+    <a asp-page="./Index" class="btn btn-danger">Back</a>
 </div>

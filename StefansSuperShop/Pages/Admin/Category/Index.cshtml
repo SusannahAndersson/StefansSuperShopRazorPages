@@ -5,10 +5,13 @@
 }
 
 <div class="container">
+
     <h2>Category</h2>
 
+    <hr />
     <p class="mb-4">
-        <a asp-page="Create">Create New</a>
+        <a asp-page="Create" class="btn btn-primary">Create</a>
+        <a href="/Admin" class="btn btn-danger">Back</a>
     </p>
 
     <div clas="container">
@@ -23,22 +26,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Categories)
+                        @foreach (var c in Model.Categories)
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.CategoryName)
+                                    @c.CategoryName
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Description)
+                                    @c.Description
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ImageUrl)
+                                    @c.ImageUrl
                                 </td>
                                 <td>
-                                    <a asp-page="./Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                                    <a asp-page="./Details" asp-route-id="@item.CategoryId">Details</a> |
-                                    <a asp-page="./Delete" asp-route-id="@item.CategoryId">Delete</a>
+                                    <a asp-page="./Edit" asp-route-id="@c.CategoryId" class="btn btn-sm btn-primary">Edit</a>
+                                    <a asp-page="./Delete" asp-route-id="@c.CategoryId" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                             </tr>
                         }
@@ -46,13 +48,13 @@
                 </table>
 
                 <div>
-                <p class="mt-5">
-                    Category images:
-                </p>
-                @foreach (var item in Model.Categories)
-                {
-                    <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" class="img-thumbnail" alt="@Html.DisplayFor(modelItem => item.CategoryName)" style="width: 50px; height: 50px;" />
-                }
+                    <p class="mt-5">
+                        Category images:
+                    </p>
+                    @foreach (var c in Model.Categories)
+                    {
+                        <img src="@c.ImageUrl" class="img-thumbnail" alt="@c.CategoryName" style="width: 50px; height: 50px;" />
+                    }
                 </div>
 
             </div>
