@@ -20,5 +20,7 @@ namespace StefansSuperShop.Data
         public string Title { get; set; }//TODO: change to subject?
         public string Body { get; set; }
         public virtual ICollection<NewsletterSubscriber> Subscribers { get; set; }
+
+        public bool IsSent { get; set; }
     }
 }
