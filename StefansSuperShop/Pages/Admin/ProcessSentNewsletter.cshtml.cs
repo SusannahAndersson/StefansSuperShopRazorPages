@@ -1,12 +1,9 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using StefansSuperShop.Data;
 using StefansSuperShop.ViewModels;
-using StefansSuperShop.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Threading;
-using Microsoft.AspNetCore.Http;
 
 namespace StefansSuperShop.Pages.Admin
 {
@@ -24,7 +21,7 @@ namespace StefansSuperShop.Pages.Admin
 
         public void OnPost()
         {
-                
+
         }
 
         public void OnGet()
@@ -34,7 +31,7 @@ namespace StefansSuperShop.Pages.Admin
         public async Task<IActionResult> SendEmail(string subject, string body)
         {
             List<string> subscribers = new();
-            
+
             MailData mailData = new(subscribers, subject, body);
 
             //bool result = await mail.SendAsync(mailData, new CancellationToken());

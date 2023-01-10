@@ -17,20 +17,20 @@ namespace StefansSuperShop.Pages.Admin
             public string Body { get; set; }
         }
 
-        SavedNewslettersModel(ApplicationDbContext context)
+        public SavedNewslettersModel(ApplicationDbContext context)
         {
             this.context = context;
         }
 
         public void OnGet()
         {
-            Newsletters = context.Newsletters.Where(e.)
+            Newsletters = context.Newsletters.Where(e => e.IsSent == false)
                 .Select(e => new NewsletterRow
-            {
-                Id = e.NewsletterId,
-                Subject = e.Title,
-                Body = e.Body
-            }).ToList();
+                {
+                    Id = e.NewsletterId,
+                    Subject = e.Title,
+                    Body = e.Body
+                }).ToList();
 
         }
     }

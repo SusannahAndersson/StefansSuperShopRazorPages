@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StefansSuperShop.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace StefansSuperShop.Pages
 {
     [BindProperties]
-	public class SubscribeModel : PageModel
+    public class SubscribeModel : PageModel
     {
 
         private readonly INewsletterService _newsletterService;

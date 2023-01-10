@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StefansSuperShop.Data;
 using StefansSuperShop.Services;
@@ -15,14 +13,14 @@ namespace StefansSuperShop.Pages.Admin
         private readonly INewsletterService newsletterService;
         private readonly IMailService mailService;
 
-        public CreateNewsletterModel (INewsletterService newsletterService, IMailService mailService
+        public CreateNewsletterModel(INewsletterService newsletterService, IMailService mailService
             )
         {
             this.newsletterService = newsletterService;
             this.mailService = mailService;
         }
 
-        public string endMessage;
+        public string EndMessage { get; set; }
 
         public async Task OnPostSend()
         {
@@ -35,17 +33,17 @@ namespace StefansSuperShop.Pages.Admin
             //TODO: alt injecera html koden? hur... vill helst också ta bort form... dvs skicka till ny sida, men det gick ej
             if (emailResult)
             {
-                Newsletter newsletter = newsletterService.CreateNewsletter(subject, body);
+                Newsletter newsletter = newsletterService.CreateNewsletter(subject, body, true);
                 var dbResult = newsletterService.AddNewsletter(newsletter);
 
                 if (dbResult)
-                    endMessage = "The newsletter was sent out successfully.";
+                    EndMessage = "The newsletter was sent out successfully.";
                 else
-                    endMessage = "The newsletter was sent, but the database could not be updated.";
+                    EndMessage = "The newsletter was sent, but the database could not be updated.";
             }
 
             else
-                endMessage = "The email was not sent.";      
+                EndMessage = "The email was not sent.";
         }
 
         public void OnPostSave()
@@ -53,14 +51,14 @@ namespace StefansSuperShop.Pages.Admin
             var body = Request.Form["email-body"];
             var subject = Request.Form["email-subject"];
 
-            Newsletter newsletter = newsletterService.CreateNewsletter(subject, body);
+            Newsletter newsletter = newsletterService.CreateNewsletter(subject, body, false);
 
             var dbResult = newsletterService.AddNewsletter(newsletter);
 
             if (dbResult)
-                endMessage = "The newsletter was saved successfully.";
+                EndMessage = "The newsletter was saved successfully.";
             else
-                endMessage = "The newsletter could not be saved to the database.";
+                EndMessage = "The newsletter could not be saved to the database.";
 
         }
 

@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using StefansSuperShop.Data;
-using System;
+﻿using StefansSuperShop.Data;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +11,7 @@ namespace StefansSuperShop.Services
         public bool AddNewsletter(Newsletter newsletter);
         public bool IsEmailSubscriber(string email);//TODO: IsEmailSubscribed?
         public List<string> GetSubscriberEmails();
-        public Newsletter CreateNewsletter(string title, string body);
+        public Newsletter CreateNewsletter(string title, string body, bool isSent);
         public void AddSubscriber(string mail);
 
     }
@@ -43,12 +41,13 @@ namespace StefansSuperShop.Services
             return _context.SaveChanges() > 0;//if updates were succesful, will be more than one, will return true
         }
 
-        public Newsletter CreateNewsletter(string title, string body)
+        public Newsletter CreateNewsletter(string title, string body, bool isSent)
         {
             Newsletter newsletter = new Newsletter()
             {
                 Title = title,
                 Body = body,
+                IsSent = isSent,
                 Subscribers = GetSubscribers()
             };
 
@@ -61,7 +60,7 @@ namespace StefansSuperShop.Services
         {
             List<NewsletterSubscriber> subscribers = new();
 
-            foreach(var s in _context.Subscribers)
+            foreach (var s in _context.Subscribers)
             {
                 subscribers.Add(s);
             }

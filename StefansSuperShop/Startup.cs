@@ -37,7 +37,7 @@ public class Startup
         services.Configure<MailSettings>(Configuration.GetSection(nameof(MailSettings)));
         services.AddScoped<INewsletterService, NewsletterService>();
         services.AddScoped<IMailService, MailService>();
-        
+
 
         services.AddRazorPages();
     }
