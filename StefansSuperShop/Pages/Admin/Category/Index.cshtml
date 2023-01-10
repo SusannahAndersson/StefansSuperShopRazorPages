@@ -1,0 +1,63 @@
+﻿@page
+@model StefansSuperShop.Pages.Admin.Category.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+
+    <h2>Category</h2>
+
+    <hr />
+    <p class="mb-4">
+        <a asp-page="Create" class="btn btn-primary">Create</a>
+        <a href="/Admin" class="btn btn-danger">Back</a>
+    </p>
+
+    <div clas="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-10">
+                <table class="table table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Image URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.Categories)
+                        {
+                            <tr>
+                                <td>
+                                    @c.CategoryName
+                                </td>
+                                <td>
+                                    @c.Description
+                                </td>
+                                <td>
+                                    @c.ImageUrl
+                                </td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@c.CategoryId" class="btn btn-sm btn-primary">Edit</a>
+                                    <a asp-page="./Delete" asp-route-id="@c.CategoryId" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div>
+                    <p class="mt-5">
+                        Category images:
+                    </p>
+                    @foreach (var c in Model.Categories)
+                    {
+                        <img src="@c.ImageUrl" class="img-thumbnail" alt="@c.CategoryName" style="width: 50px; height: 50px;" />
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
