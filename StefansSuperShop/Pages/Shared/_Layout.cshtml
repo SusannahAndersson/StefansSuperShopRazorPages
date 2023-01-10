@@ -183,8 +183,9 @@
                     <div class="col-md-12">
                         <div class="newsletter">
                             <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                            <form method="post">
+                            <form method="post" action="/subscribe">
                                 <input class="input" name="email" type="email" placeholder="Enter Your Email">
+                                @Html.AntiForgeryToken()
                                 <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
                             </form>
                             <ul class="newsletter-follow">
