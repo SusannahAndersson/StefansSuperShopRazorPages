@@ -19,15 +19,23 @@ namespace StefansSuperShop.Pages
         [EmailAddress]
         [Required]
         public string Email { get; set; }
+        public bool AlreadySignedUp { get; set; } = false;
         public void OnGet()
         {
         }
         [ValidateAntiForgeryToken()]
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid && !_newsletterService.IsEmailSubscriber(Email))
+            if (ModelState.IsValid)
             {
-                _newsletterService.AddSubscriber(Email);   
+                if (_newsletterService.IsEmailSubscriber(Email))
+                {
+                    AlreadySignedUp = true;
+                }
+                else
+                {
+                    _newsletterService.AddSubscriber(Email);
+                }
             }
             return Page();
         }

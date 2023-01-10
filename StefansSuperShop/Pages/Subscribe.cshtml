@@ -2,5 +2,11 @@
 @model StefansSuperShop.Pages.SubscribeModel
 @{
 }
-
-<h1>Thank you for signing up!</h1>
+@if (Model.AlreadySignedUp)
+{
+    <h2>Email is already signed up!</h2>
+}
+else
+{
+    <h2>Thank you for signing up!</h2>
+}
