@@ -11,13 +11,30 @@
         <li>
             <a class="nav-link text-dark" asp-page="/Admin/Index" title="Admin"><i class="fa fa-user-o"></i> Admin</a>
         </li>
-
+         
+        <li>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" title="Logout" asp-route-returnUrl="@Url.Page("Home", new { area = "" })">
+                <button class="nav-link text-dark" type="submit" 
+                    style="
+                        background-color: inherit;
+                        border: none;
+                        color: white;
+                        font-weight: inherit;
+                    ">
+                    <i class="fa fa-user-o"></i>
+                    <a class="nav-link text-dark">Logout</a>
+                </button>
+            </form>
+        </li>
+        
+        /*
         <li>
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Logout" title="Logout" asp-route-returnUrl="@Url.Page("Home", new { area = "" })">
                 <i class="fa fa-user-o"></i>
                 Logga ut
             </a>
         </li>
+        */
     }
     else
     {
