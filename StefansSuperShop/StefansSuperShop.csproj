@@ -30,4 +30,8 @@
   <ItemGroup>
     <None Remove="Services\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
 </Project>

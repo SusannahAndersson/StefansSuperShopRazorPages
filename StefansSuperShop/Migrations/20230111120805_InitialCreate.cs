@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace StefansSuperShop.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,6 +119,21 @@ namespace StefansSuperShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Newsletters",
+                columns: table => new
+                {
+                    NewsletterID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsSent = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Newsletters", x => x.NewsletterID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Region",
                 columns: table => new
                 {
@@ -143,6 +158,19 @@ namespace StefansSuperShop.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shippers", x => x.ShipperID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subscribers",
+                columns: table => new
+                {
+                    NewsletterSubscriberID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mail = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subscribers", x => x.NewsletterSubscriberID);
                 });
 
             migrationBuilder.CreateTable(
@@ -334,6 +362,30 @@ namespace StefansSuperShop.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NewsletterNewsletterSubscriber",
+                columns: table => new
+                {
+                    NewslettersNewsletterId = table.Column<int>(type: "int", nullable: false),
+                    SubscribersNewsletterSubscriberId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewsletterNewsletterSubscriber", x => new { x.NewslettersNewsletterId, x.SubscribersNewsletterSubscriberId });
+                    table.ForeignKey(
+                        name: "FK_NewsletterNewsletterSubscriber_Newsletters_NewslettersNewsletterId",
+                        column: x => x.NewslettersNewsletterId,
+                        principalTable: "Newsletters",
+                        principalColumn: "NewsletterID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_NewsletterNewsletterSubscriber_Subscribers_SubscribersNewsletterSubscriberId",
+                        column: x => x.SubscribersNewsletterSubscriberId,
+                        principalTable: "Subscribers",
+                        principalColumn: "NewsletterSubscriberID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -436,6 +488,11 @@ namespace StefansSuperShop.Migrations
                 column: "ReportsTo");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NewsletterNewsletterSubscriber_SubscribersNewsletterSubscriberId",
+                table: "NewsletterNewsletterSubscriber",
+                column: "SubscribersNewsletterSubscriberId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Order Details_ProductID",
                 table: "Order Details",
                 column: "ProductID");
@@ -489,6 +546,9 @@ namespace StefansSuperShop.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "NewsletterNewsletterSubscriber");
+
+            migrationBuilder.DropTable(
                 name: "Order Details");
 
             migrationBuilder.DropTable(
@@ -499,6 +559,12 @@ namespace StefansSuperShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Newsletters");
+
+            migrationBuilder.DropTable(
+                name: "Subscribers");
 
             migrationBuilder.DropTable(
                 name: "Orders");
