@@ -16,14 +16,14 @@ namespace StefansSuperShop.Data
         public int CategoryId { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(20, ErrorMessage = "Category name may only be a maximum of 20 characters")]
         public string CategoryName { get; set; }
 
-        [Column(TypeName = "ntext")]
+        [StringLength(1000, ErrorMessage = "Description may only be a maximum of 1000 characters")]
         public string Description { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Picture { get; set; }
+        [StringLength(500, ErrorMessage = "Image path may only be a maximum of 500 characters")]
+        public string ImageUrl { get; set; }
 
         [InverseProperty("Category")]
         public virtual ICollection<Products> Products { get; set; }

@@ -13,9 +13,10 @@
         </li>
 
         <li>
-            <form class="form-inline" asp-area="Identity"  asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logga ut</button>
-            </form>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Logout" title="Logout" asp-route-returnUrl="@Url.Page("Home", new { area = "" })">
+                <i class="fa fa-user-o"></i>
+                Logga ut
+            </a>
         </li>
     }
     else
