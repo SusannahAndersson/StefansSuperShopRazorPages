@@ -110,7 +110,7 @@ namespace StefansSuperShop.Data
 
         private void addProduct(string category, string name, int pris, int stocklevel, string description)
         {
-            if (!_dbContext.Products.Any(e => e.ProductName == name)) return;
+            if (_dbContext.Products.Any(e => e.ProductName == name)) return;
             _dbContext.Products.Add(new Products
             {
                 ProductName = name,
