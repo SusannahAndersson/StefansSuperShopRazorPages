@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StefansSuperShop.Configuration;
 using StefansSuperShop.Data;
+using StefansSuperShop.Services;
 
 namespace StefansSuperShop;
 
@@ -27,7 +29,16 @@ public class Startup
         services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
         services.AddTransient<DataInitializer>();
+
+        //newsletter services
+        services.Configure<MailSettings>(Configuration.GetSection(nameof(MailSettings)));
+        services.AddScoped<INewsletterService, NewsletterService>();
+        services.AddScoped<IMailService, MailService>();
+
+
         services.AddRazorPages();
     }
 

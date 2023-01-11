@@ -6,6 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Admin\CreateNewsletter - Copy.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Admin\Component.razor" />
+    <Content Remove="Pages\Admin\CreateNewsletter - Copy.cshtml" />
+    <Content Remove="Pages\Admin\Newsletter.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="3.4.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.12" />
@@ -16,4 +27,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Services\" />
+  </ItemGroup>
 </Project>

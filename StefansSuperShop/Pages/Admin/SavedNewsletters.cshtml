@@ -1,0 +1,29 @@
+﻿@page
+@model StefansSuperShop.Pages.Admin.SavedNewslettersModel
+@{
+}
+
+@*<div>
+	<ul>
+		@foreach(var item in Model.Newsletters)
+	{
+		<li class="newsletter-row">
+			<form method="post" > 
+				<input type="hidden" name="newsletter-id">
+				
+				<div>
+				@item.Subject
+			</div>
+
+			<input type="submit" value="Edit" action="EditNewsletter.cshtml">
+			<input type="submit" value="Send" asp-page-handler="Send"/>
+			<input type="submit" value="Delete" asp-page-handler="Delete"/>
+
+			</form>
+			
+			
+		</li>
+	}
+	</ul>
+	
+</div>*@

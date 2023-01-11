@@ -23,6 +23,22 @@ namespace StefansSuperShop.Data
             SeedUsers();
             SeedCategories();
             SeedProducts();
+            SeedSubscribers();
+        }
+
+        private void SeedSubscribers()
+        {
+            AddSubscriber("brenna.mills@ethereal.email");
+            _dbContext.SaveChanges();
+        }
+
+        private void AddSubscriber(string email)
+        {
+            if (_dbContext.Subscribers.Any(e => e.Mail == email)) return;
+            _dbContext.Subscribers.Add(new NewsletterSubscriber
+            {
+                Mail = email,
+            });
         }
 
         private void SeedProducts()

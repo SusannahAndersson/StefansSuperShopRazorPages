@@ -1,0 +1,30 @@
+﻿@page
+@model StefansSuperShop.Pages.Admin.CreateNewsletterModel
+
+
+
+<div class="container">
+	<h2>Create New Newsletter</h2>
+  <form method="post">
+    <div>
+        <input type="text" name="email-subject" placeholder="Enter a subject here"/>
+    </div>
+
+    <div>
+        Newsletter <br />
+        <textarea name="email-body" cols="45" rows="4" placeholder="Enter the newsletter body here"></textarea>
+    </div>
+
+    <div>
+        <input type="submit" value="Send Newsletter" asp-page-handler="Send"/>
+        <input type="submit" value="Save Newsletter" asp-page-handler="Save"/>
+    </div>
+  </form>
+
+   <div>
+       <p>
+           @Model.EndMessage
+       </p>
+   </div>
+
+</div>
