@@ -35,5 +35,6 @@
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Properties\ServiceDependencies\local\" />
     <Folder Include="Properties\ServiceDependencies\StefansSuperShop - Web Deploy\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

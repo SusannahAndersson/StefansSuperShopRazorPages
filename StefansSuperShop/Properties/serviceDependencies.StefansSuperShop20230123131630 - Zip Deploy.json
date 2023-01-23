@@ -6,6 +6,8 @@
       "type": "mssql.azure",
       "connectionId": "ConnectionStrings:DefaultConnection",
       "dynamicId": null
+    "secrets1": {
+      "type": "secrets.user"
     }
   }
 }
