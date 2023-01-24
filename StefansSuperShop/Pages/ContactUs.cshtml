@@ -3,16 +3,41 @@
 @{
     ViewData["Title"] = "Contact Us";
 }
+<div class="container">
 
-<h1 class="title">Contact Us</h1>
-<form method="post">
-    <label for="name">Enter your name:</label>
-    <input type="text" name="name" placeholder="Name" />
-    <label for="name">Enter your email:</label>
-    <input type="email" name="email" placeholder="Email" />
-    <label for="name">Enter your subject:</label>
-    <input type="text" name="subject" placeholder="Header" />
-    <label for="name">Enter your message:</label>
-    <textarea name="body" cols="45" rows="4" placeholder="Message"></textarea>
-    <input type="submit" value="Send Message" />
-</form>
+    <h2>Contact Us</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Name</label>
+                    <input asp-for="Name" type="text" placeholder="Name" class="form-control" required />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" type="email" placeholder="Email" class="form-control" required />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="name">Subject</label>
+                    <input type="text" name="subject" placeholder="Header" class="form-control" required />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Body">Message</label>
+                    <textarea rows="5" asp-for="Body" class="form-control" style="resize: none;" required></textarea>
+                    <span asp-validation-for="Body" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <a asp-page="Index" class="btn btn-danger">Back</a>
+                    <input type="submit" value="Send Message" class="btn btn-primary" />
+                </div>
+            </form>
+            <p>@Model.resultsMessage</p>
+        </div>
+    </div>
+</div>

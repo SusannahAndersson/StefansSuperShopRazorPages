@@ -12,27 +12,47 @@ namespace StefansSuperShop.Pages
     {
         private readonly IMailService _mailService;
 
+        public string resultsMessage;
+
         public ContactUsModel(IMailService mailService)
         {
             _mailService = mailService;
         }
 
-        public async Task OnPostSend()
+        [BindProperty]
+        public string Name { get; set; }
+        [BindProperty]
+        public string Email { get; set; }
+        [BindProperty]
+        public string Subject { get; set; }
+        [BindProperty]
+        public string Body { get; set; }
+
+        public async Task OnPostAsync()
         {
-            var name = Request.Form["name"];
-            var email = Request.Form["email"];
-            var subject = Request.Form["subject"];
+            if (!ModelState.IsValid)
+            {
+                return;
+            }
 
-            var rawBody = Request.Form["body"];
-            var body = $"From: {name}\nEmail: {email}\nMessage: {rawBody}";
+            var body = $"From: {Name}\nEmail: {Email}\nMessage: {Body}";
 
 
-            await _mailService.SendContactUsAsync(
-                new ViewModels.MailData { Subject = subject, Body = body });
+            if (await _mailService.SendContactUsAsync(
+                new ViewModels.MailData { Subject = Subject, Body = body }))
+            {
+                resultsMessage = "Message was successfully sent";
+            }
+            else
+            {
+                resultsMessage = "Something went wrong, please try again later";
+            }
+
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            return Page();
         }
     }
 }
