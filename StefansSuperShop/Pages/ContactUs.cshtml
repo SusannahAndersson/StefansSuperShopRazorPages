@@ -1,0 +1,18 @@
+﻿@page
+@model StefansSuperShop.Pages.ContactUsModel
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<h1 class="title">Contact Us</h1>
+<form method="post">
+    <label for="name">Enter your name:</label>
+    <input type="text" name="name" placeholder="Name" />
+    <label for="name">Enter your email:</label>
+    <input type="email" name="email" placeholder="Email" />
+    <label for="name">Enter your subject:</label>
+    <input type="text" name="subject" placeholder="Header" />
+    <label for="name">Enter your message:</label>
+    <textarea name="body" cols="45" rows="4" placeholder="Message"></textarea>
+    <input type="submit" value="Send Message" />
+</form>

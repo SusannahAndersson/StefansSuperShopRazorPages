@@ -5,6 +5,7 @@ using MimeKit;
 using StefansSuperShop.Configuration;
 using StefansSuperShop.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace StefansSuperShop.Services
     public interface IMailService //TODO: move to new interface folder?
     {
         Task<bool> SendAsync(MailData mailData, CancellationToken ct);
+        public Task<bool> SendContactUsAsync(MailData mailData);
     }
 
     public class MailService : IMailService
@@ -22,6 +24,13 @@ namespace StefansSuperShop.Services
         public MailService(IOptions<MailSettings> settings)
         {
             _settings = settings.Value;
+        }
+
+        public async Task<bool> SendContactUsAsync(MailData mailData)
+        {
+            mailData.To = new List<string>{_settings.ContactUsEmail};
+
+            return await SendAsync(mailData);
         }
 
         public async Task<bool> SendAsync(MailData mailData, CancellationToken ct = default)
