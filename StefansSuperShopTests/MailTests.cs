@@ -1,11 +1,12 @@
 namespace StefansSuperShopTests
 {
     [TestClass]
-    public class UnitTest1
+    public class MailTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void an_email_should_be_sent()
         {
+
         }
     }
 }
