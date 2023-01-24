@@ -4,10 +4,7 @@
       "secretStore": "AzureAppSettings",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/stefanssupershopdbserver/databases/StefansSuperShop_db",
       "type": "mssql.azure",
-      "connectionId": "ConnectionStrings:DefaultConnection",
-      "dynamicId": null
-    "secrets1": {
-      "type": "secrets.user"
+      "connectionId": "ConnectionStrings:DefaultConnection"
     }
   }
 }
