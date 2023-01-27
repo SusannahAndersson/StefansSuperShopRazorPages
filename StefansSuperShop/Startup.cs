@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StefansSuperShop.Configuration;
 using StefansSuperShop.Data;
+using StefansSuperShop.Interfaces;
 using StefansSuperShop.Services;
 
 namespace StefansSuperShop;
@@ -36,8 +37,8 @@ public class Startup
         //newsletter services
         services.Configure<MailSettings>(Configuration.GetSection(nameof(MailSettings)));
         services.AddScoped<INewsletterService, NewsletterService>();
-        services.AddScoped<IMailService, MailService>();
         services.AddSingleton<IKrisInfoService, KrisInfoService>();
+        services.AddScoped<IMailService, EtherealMailService>();//TODO: ethereal in dev, mailtrap.io in prod
 
 
         services.AddRazorPages();

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using StefansSuperShop.Interfaces;
 using StefansSuperShop.Services;
 using System;
 
