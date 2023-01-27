@@ -37,6 +37,7 @@ public class Startup
         //newsletter services
         services.Configure<MailSettings>(Configuration.GetSection(nameof(MailSettings)));
         services.AddScoped<INewsletterService, NewsletterService>();
+        services.AddSingleton<IKrisInfoService, KrisInfoService>();
         services.AddScoped<IMailService, EtherealMailService>();//TODO: ethereal in dev, mailtrap.io in prod
 
 
