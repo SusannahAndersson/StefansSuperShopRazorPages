@@ -6,6 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Properties\ServiceDependencies\local\**" />
+    <Compile Remove="Properties\ServiceDependencies\StefansSuperShop - Web Deploy\**" />
+    <Content Remove="Properties\ServiceDependencies\local\**" />
+    <Content Remove="Properties\ServiceDependencies\StefansSuperShop - Web Deploy\**" />
+    <EmbeddedResource Remove="Properties\ServiceDependencies\local\**" />
+    <EmbeddedResource Remove="Properties\ServiceDependencies\StefansSuperShop - Web Deploy\**" />
+    <None Remove="Properties\ServiceDependencies\local\**" />
+    <None Remove="Properties\ServiceDependencies\StefansSuperShop - Web Deploy\**" />
+    <_WebToolingArtifacts Remove="Properties\ServiceDependencies\local\**" />
+    <_WebToolingArtifacts Remove="Properties\ServiceDependencies\StefansSuperShop - Web Deploy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Pages\Admin\CreateNewsletter - Copy.cshtml.cs" />
   </ItemGroup>
 
@@ -32,6 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Properties\ServiceDependencies\StefansSuperShop20230123131630 - Zip Deploy\" />
   </ItemGroup>
 </Project>
