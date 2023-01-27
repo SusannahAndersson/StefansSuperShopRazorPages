@@ -18,16 +18,26 @@ namespace StefansSuperShopTests
     public class MailTests
     {
         private IMailService sut;
-        private IOptions<MailSettings> mailSettings;
 
 
         public MailTests()
         {
-            string jsonData = File.ReadAllText("C:\\Github\\StefansSuperShopRazorPages\\StefansSuperShop\\appsettings.json");
+            MailSettings settings = new()
+            {
+                DisplayName = "Stefans Super Shop",
+                From = "info@stefansupershop.com",
+                UserName = "stefan.crist87@ethereal.email",
+                Password = "dg1fmzfYd8hx7UH1XQ",
+                Host = "smtp.ethereal.email",
+                Port = 587,
+                UseSSL = false,
+                UseStartTls = true
+            };
 
-            mailSettings = JsonSerializer.Deserialize<IOptions<MailSettings>>(jsonData);
+            Mock<IOptions<MailSettings>> mailSettings = new Mock<IOptions<MailSettings>>();
+            mailSettings.Setup(x => x.Value).Returns(settings);
 
-            sut = new EtherealMailService(mailSettings);
+            sut = new EtherealMailService(mailSettings.Object);
         }
 
         [TestMethod]

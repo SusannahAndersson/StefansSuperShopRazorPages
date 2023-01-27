@@ -2,6 +2,7 @@
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using Moq;
 using StefansSuperShop.Configuration;
 using StefansSuperShop.Interfaces;
 using StefansSuperShop.ViewModels;
@@ -58,22 +59,11 @@ namespace StefansSuperShop.Services
 
         private MimeMessage GetMailContent(MailData mailData)
         {
-            string jsonData = File.ReadAllText("C:\\Github\\StefansSuperShopRazorPages\\StefansSuperShop\\appsettings.Development.json");
-
-            var dynamic = JsonSerializer.Deserialize<dynamic>(jsonData);
-
-            var x = dynamic.ValueKind["MailSettings:DisplayName"];
-
-            var mailSettings = new MailSettings()
-            {
-                DisplayName = dynamic.value[0]["MailSettings:DisplayName"]
-            };
-
-            var mail = new MimeMessage();
+            MimeMessage mail = new MimeMessage();
 
             // Sender - if the user has not entered "from", it's retrieved from appsettings instead
-            mail.From.Add(new MailboxAddress(mailData.DisplayName ?? mailSettings.DisplayName, mailData.From ?? mailSettings.From));
-            mail.Sender = new MailboxAddress(mailData.DisplayName ?? mailSettings.DisplayName, mailData.From ?? mailSettings.From);
+            mail.From.Add(new MailboxAddress(mailData.DisplayName ?? _settings.DisplayName, mailData.From ?? _settings.From));
+            mail.Sender = new MailboxAddress(mailData.DisplayName ?? _settings.DisplayName, mailData.From ?? _settings.From);
 
             // Receiver (won't actually receive the email, since ethereal.email never actually sends it)
             foreach (string mailAddress in mailData.To)
