@@ -15,12 +15,12 @@ using System.Text.Json;
 namespace StefansSuperShopTests
 {
     [TestClass]
-    public class MailTests
+    public class EtherealMailTests
     {
         private IMailService sut;
 
 
-        public MailTests()
+        public EtherealMailTests()
         {
             MailSettings settings = new()
             {
