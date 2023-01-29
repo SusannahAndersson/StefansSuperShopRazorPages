@@ -36,7 +36,11 @@ namespace StefansSuperShopTests
             Assert.IsTrue(sut.isDataStale());
         }
 
-
+		[TestMethod]
+		public async Task fetch_saves_10_items()
+		{
+			await sut.GetKrisInfosAsync();
+			Assert.AreEqual(sut.KrisInfoList.Count, 10);
+		}
     }
 }
-

@@ -9,12 +9,12 @@ namespace StefansSuperShop.Services
 {
 	public interface IKrisInfoService
 	{
-		public Task<List<KrisInfo>> GetKrisInfos();
+		public Task<List<KrisInfo>> GetKrisInfosAsync();
 
     }
     public class KrisInfoService : IKrisInfoService
 	{
-		private List<KrisInfo> KrisInfoList = new List<KrisInfo>();
+		public List<KrisInfo> KrisInfoList = new List<KrisInfo>();
 		public DateTime LastUpdated;
 
 		public KrisInfoService()
@@ -22,7 +22,7 @@ namespace StefansSuperShop.Services
 			//fetchFromAPI();
 		}
 
-		public async Task<List<KrisInfo>> GetKrisInfos()
+		public async Task<List<KrisInfo>> GetKrisInfosAsync()
 		{
 			await fetchFromAPI();
 			return KrisInfoList;
