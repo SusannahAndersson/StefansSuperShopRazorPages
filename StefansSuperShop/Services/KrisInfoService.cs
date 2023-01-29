@@ -15,7 +15,7 @@ namespace StefansSuperShop.Services
     public class KrisInfoService : IKrisInfoService
 	{
 		private List<KrisInfo> KrisInfoList = new List<KrisInfo>();
-		private DateTime LastUpdated;
+		public DateTime LastUpdated;
 
 		public KrisInfoService()
 		{
@@ -51,7 +51,7 @@ namespace StefansSuperShop.Services
 
         public bool isDataStale()
         {
-            if (LastUpdated.AddHours(1) <= DateTime.Now)
+            if (LastUpdated.AddHours(1) >= DateTime.Now)
                 return true;
             return false;
         }
