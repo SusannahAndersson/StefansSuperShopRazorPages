@@ -1,18 +1,12 @@
-using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using StefansSuperShop.Configuration;
-using StefansSuperShop.Data;
 using StefansSuperShop.Interfaces;
 using StefansSuperShop.Services;
 using StefansSuperShop.ViewModels;
-using StefansSuperShop.Pages.Admin;
-using Microsoft.Extensions.Options;
-using StefansSuperShop.Pages.Admin;
-using System.Text.Json;
 
-namespace StefansSuperShopTests
+namespace StefansSuperShopTests.Services
 {
     [TestClass]
     public class EtherealMailTests

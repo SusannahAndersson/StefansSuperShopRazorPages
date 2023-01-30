@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StefansSuperShop.Interfaces;
 using StefansSuperShop.Services;
-using System;
 
 namespace StefansSuperShop.Pages.Admin
 {
@@ -23,7 +21,7 @@ namespace StefansSuperShop.Pages.Admin
 
         public void OnGet()
         {
-            NewsletterId = int.Parse(Request.Form["newsletter-id"]); 
+            NewsletterId = int.Parse(Request.Form["newsletter-id"]);
         }
     }
 }

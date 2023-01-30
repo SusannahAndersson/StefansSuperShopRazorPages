@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using StefansSuperShop.Services;
 using StefansSuperShop.Interfaces;
+using System.Threading.Tasks;
 
 namespace StefansSuperShop.Pages
 {
-	public class ContactUsModel : PageModel
+    public class ContactUsModel : PageModel
     {
         private readonly IMailService _mailService;
 

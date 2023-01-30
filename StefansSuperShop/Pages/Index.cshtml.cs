@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using StefansSuperShop.Data;
-using System.Collections.Generic;
-using System.Linq;
 using StefansSuperShop.Services;
 using StefansSuperShop.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StefansSuperShop.Pages
 {

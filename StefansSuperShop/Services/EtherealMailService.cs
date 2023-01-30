@@ -2,13 +2,10 @@ using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Moq;
 using StefansSuperShop.Configuration;
 using StefansSuperShop.Interfaces;
 using StefansSuperShop.ViewModels;
 using System;
-using System.IO;
-using System.Text.Json;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +23,7 @@ namespace StefansSuperShop.Services
 
         public async Task<bool> SendContactUsAsync(MailData mailData)
         {
-            mailData.To = new List<string>{_settings.ContactUsEmail};
+            mailData.To = new List<string> { _settings.ContactUsEmail };
 
             return await SendAsync(mailData);
         }
