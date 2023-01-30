@@ -41,8 +41,6 @@ namespace StefansSuperShop.Pages
             TrendingCategories = _context.Categories.Take(3).Select(c =>
                 new TrendingCategory { Id = c.CategoryId, Name = c.CategoryName }
             ).ToList();
-            KrisInformation = await _krisInfoService.GetKrisInfos();
-
         }
     }
 }
