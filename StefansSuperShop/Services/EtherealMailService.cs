@@ -1,11 +1,14 @@
-﻿using MailKit.Net.Smtp;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using Moq;
 using StefansSuperShop.Configuration;
 using StefansSuperShop.Interfaces;
 using StefansSuperShop.ViewModels;
 using System;
+using System.IO;
+using System.Text.Json;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -62,12 +65,12 @@ namespace StefansSuperShop.Services
             await smtp.DisconnectAsync(true, ct);
         }
 
-        private MimeMessage GetMailContent(MailData mailData)//TODO: needs to be refactored further
+        private MimeMessage GetMailContent(MailData mailData)
         {
-            var mail = new MimeMessage();
+            MimeMessage mail = new MimeMessage();
 
             // Sender - if the user has not entered "from", it's retrieved from appsettings instead
-            mail.From.Add(new MailboxAddress(_settings.DisplayName, mailData.From ?? _settings.From));
+            mail.From.Add(new MailboxAddress(mailData.DisplayName ?? _settings.DisplayName, mailData.From ?? _settings.From));
             mail.Sender = new MailboxAddress(mailData.DisplayName ?? _settings.DisplayName, mailData.From ?? _settings.From);
 
             // Receiver (won't actually receive the email, since ethereal.email never actually sends it)
