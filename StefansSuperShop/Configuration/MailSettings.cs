@@ -10,5 +10,6 @@
         public int Port { get; set; }
         public bool UseSSL { get; set; }
         public bool UseStartTls { get; set; }
+        public string ContactUsEmail { get; set; }
     }
 }

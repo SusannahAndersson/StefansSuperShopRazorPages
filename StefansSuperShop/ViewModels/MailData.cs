@@ -5,7 +5,7 @@ namespace StefansSuperShop.ViewModels
     public class MailData
     {
         // Receiver
-        public List<string> To { get; }
+        public List<string> To { get; set; }
 
         // Sender
         public string? From { get; }
@@ -13,9 +13,12 @@ namespace StefansSuperShop.ViewModels
         public string? DisplayName { get; }
 
         // Content
-        public string Subject { get; }
+        public string Subject { get; set; }
 
-        public string Body { get; }
+        public string Body { get; set; }
+
+        public MailData()
+        { }
 
         public MailData(List<string> to, string subject, string body, string? from = null, string? displayName = null)
         {

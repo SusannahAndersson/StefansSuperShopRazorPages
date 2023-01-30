@@ -3,33 +3,37 @@ using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using StefansSuperShop.Configuration;
+using StefansSuperShop.Interfaces;
 using StefansSuperShop.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace StefansSuperShop.Services
 {
-    public interface IMailService //TODO: move to new interface folder?
-    {
-        Task<bool> SendAsync(MailData mailData, CancellationToken ct);
-    }
-
-    public class MailService : IMailService
+    public class EtherealMailService : IMailService
     {
         private readonly MailSettings _settings;
 
-        public MailService(IOptions<MailSettings> settings)
+        public EtherealMailService(IOptions<MailSettings> settings)
         {
             _settings = settings.Value;
+        }
+
+        public async Task<bool> SendContactUsAsync(MailData mailData)
+        {
+            mailData.To = new List<string>{_settings.ContactUsEmail};
+
+            return await SendAsync(mailData);
         }
 
         public async Task<bool> SendAsync(MailData mailData, CancellationToken ct = default)
         {
             try
             {
-                var mail = GetMail(mailData);
-                await SendMailAsync(_settings.UserName, _settings.Password, mail, ct);
+                var mail = GetMailContent(mailData);
+                await SendMailAsync(mail, ct);
 
                 return true;
 
@@ -40,8 +44,7 @@ namespace StefansSuperShop.Services
             }
         }
 
-        private async Task SendMailAsync(string userName, string Password,
-            MimeMessage mail, CancellationToken ct)
+        private async Task SendMailAsync(MimeMessage mail, CancellationToken ct)
         {
             using var smtp = new SmtpClient();
 
@@ -59,7 +62,7 @@ namespace StefansSuperShop.Services
             await smtp.DisconnectAsync(true, ct);
         }
 
-        private MimeMessage GetMail(MailData mailData)//TODO: needs to be refactored further
+        private MimeMessage GetMailContent(MailData mailData)//TODO: needs to be refactored further
         {
             var mail = new MimeMessage();
 
@@ -67,7 +70,7 @@ namespace StefansSuperShop.Services
             mail.From.Add(new MailboxAddress(_settings.DisplayName, mailData.From ?? _settings.From));
             mail.Sender = new MailboxAddress(mailData.DisplayName ?? _settings.DisplayName, mailData.From ?? _settings.From);
 
-            // Receiver
+            // Receiver (won't actually receive the email, since ethereal.email never actually sends it)
             foreach (string mailAddress in mailData.To)
                 mail.To.Add(MailboxAddress.Parse(mailAddress));
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StefansSuperShop.Data;
+using StefansSuperShop.Interfaces;
 using StefansSuperShop.Services;
 using StefansSuperShop.ViewModels;
 using System.Collections.Generic;
