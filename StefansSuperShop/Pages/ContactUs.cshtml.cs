@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using StefansSuperShop.Services;
+using StefansSuperShop.Interfaces;
 
 namespace StefansSuperShop.Pages
 {
