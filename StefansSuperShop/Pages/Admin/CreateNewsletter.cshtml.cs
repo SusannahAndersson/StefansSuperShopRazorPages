@@ -31,7 +31,6 @@ namespace StefansSuperShop.Pages.Admin
 
             var emailResult = await SendEmail(subject, body, subscribers);
 
-            //TODO: alt injecera html koden? hur... vill helst också ta bort form... dvs skicka till ny sida, men det gick ej
             if (emailResult)
             {
                 Newsletter newsletter = newsletterService.CreateNewsletter(subject, body, true);
