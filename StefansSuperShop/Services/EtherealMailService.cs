@@ -1,4 +1,4 @@
-﻿using MailKit.Net.Smtp;
+using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
@@ -9,6 +9,7 @@ using StefansSuperShop.ViewModels;
 using System;
 using System.IO;
 using System.Text.Json;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,6 +22,13 @@ namespace StefansSuperShop.Services
         public EtherealMailService(IOptions<MailSettings> settings)
         {
             _settings = settings.Value;
+        }
+
+        public async Task<bool> SendContactUsAsync(MailData mailData)
+        {
+            mailData.To = new List<string>{_settings.ContactUsEmail};
+
+            return await SendAsync(mailData);
         }
 
         public async Task<bool> SendAsync(MailData mailData, CancellationToken ct = default)
